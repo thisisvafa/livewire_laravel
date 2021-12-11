@@ -13,13 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', \App\Http\Livewire\home::class)->name('home');
-Route::get('/login', \App\Http\Livewire\login::class)->name('login');
+Route::get('/', \App\Http\Livewire\home::class)->name('home')->middleware('auth');
+//Route::get('/login', \App\Http\Livewire\login::class)->name('login');
+//Route::get('/register', \App\Http\Livewire\register::class)->name('register');
 
-//Route::get('/', function () {
-////    $comments = \App\Models\Comment::all();
-//    return view('welcome');
-//});
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
 //
 //Route::get('/dashboard', function () {
 //    return view('dashboard');

@@ -7,7 +7,6 @@
     <title>Livewire</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
     <livewire:styles />
     <livewire:scripts />
 
@@ -26,13 +25,21 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Registers</a>
-                        </li>
                     </ul>
+                </div>
+                <div class="d-flex">
+{{--                    @if(auth()->check())--}}
+                    @auth()
+                        <livewire:logout />
+                    @else
+                        <div class="mx-1">
+                            <a class="btn btn-outline-success" href="{{ route('login') }}">Login</a>
+                        </div>
+                        <div class="mx-1">
+                            <a class="btn btn-outline-success" href="{{ route('register') }}">Register</a>
+                        </div>
+{{--                    @endif--}}
+                    @endauth
                 </div>
             </div>
         </nav>
